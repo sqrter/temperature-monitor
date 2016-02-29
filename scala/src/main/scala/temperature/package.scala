@@ -23,6 +23,7 @@ package object temperature {
   implicit class RichDateTime(instance: DateTime) {
     def -(value: FiniteDuration) = instance.minusMillis(value.toMillis.toInt)
     def >(value: DateTime) = instance.isAfter(value)
+    def totalSeconds = instance.getMillis / 1000
   }
 
   implicit class RichDoubleIterable(instance: Iterable[Double]) {

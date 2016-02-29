@@ -15,14 +15,14 @@ class Processor(listener: ActorRef) extends Actor {
   val averageActualPeriod = 3.seconds
   val averageSendInterval = 1.second
 
-  private var aggregator = Aggregator(temperatureThreshold, averageActualPeriod)
+  private var aggregator = new IncrementalAggregator(temperatureThreshold, averageActualPeriod, averageSendInterval)
 
   import context.dispatcher
   context.system.scheduler.schedule(averageSendInterval, averageSendInterval, self, Iterate)
 
   def receive = {
     case DeviceTemperature(deviceId, value) =>
-      aggregator = aggregator.add(deviceId, value, DateTime.now)(listener ! _)
+      aggregator.add(deviceId, value, DateTime.now) foreach (listener ! _)
     case Iterate =>
       listener ! Average(aggregator.average)
   }
