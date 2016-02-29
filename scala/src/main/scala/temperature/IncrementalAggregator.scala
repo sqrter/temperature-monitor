@@ -5,9 +5,7 @@ import org.joda.time.DateTime
 import scala.collection.mutable
 import scala.concurrent.duration.FiniteDuration
 
-class IncrementalAggregator(threshold: Temperature,
-                            averageActualPeriod: FiniteDuration,
-                            samplingInterval: FiniteDuration) {
+class IncrementalAggregator(threshold: Temperature, averageActualPeriod: FiniteDuration) {
   type Seconds = Long
   type Total = Double
   type Count = Int
