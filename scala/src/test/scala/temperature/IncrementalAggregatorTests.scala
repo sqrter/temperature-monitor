@@ -103,5 +103,5 @@ class IncrementalAggregatorTests extends FlatSpecLike with Matchers {
   }
 
   def createAggregator(threshold: Temperature, averageActualPeriod: FiniteDuration) =
-    new IncrementalAggregator(threshold, averageActualPeriod, samplingInterval = 1.second)
+    new IncrementalAggregator(threshold, averageActualPeriod)
 }
