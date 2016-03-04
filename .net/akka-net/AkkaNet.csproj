@@ -73,8 +73,6 @@
     <Compile Include="Actors\Device.cs" />
     <Compile Include="Actors\Printer.cs" />
     <Compile Include="Actors\Processor.cs" />
-    <Compile Include="Messages\DeviceMessages.cs" />
-    <Compile Include="Messages\ProcessorMessages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

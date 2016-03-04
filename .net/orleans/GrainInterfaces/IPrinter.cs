@@ -1,10 +1,13 @@
 using System.Threading.Tasks;
 using Orleans;
+using TemperatureMonitor.Messages;
 
 namespace GrainInterfaces
 {
 	public interface IPrinter: IGrainWithIntegerKey
     {
-        Task<string> SayHello();
+        Task PrintAverage(AverageTemperature data);
+        Task ThresholdExceeded(ThresholdExceeded msg);
+	    Task ValueNormalized(ValueNormalized msg);
     }
 }

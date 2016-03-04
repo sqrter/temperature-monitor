@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\TemperatureValue.cs" />
+    <Compile Include="Messages\DeviceMessages.cs" />
+    <Compile Include="Messages\ProcessorMessages.cs" />
     <Compile Include="Services\AbstractAverageService.cs" />
     <Compile Include="Services\IAverageService.cs" />
     <Compile Include="Services\OptimizedAverageService.cs" />

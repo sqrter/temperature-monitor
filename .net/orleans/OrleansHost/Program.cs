@@ -17,8 +17,8 @@ namespace OrleansHost
 
             GrainClient.Initialize("DevTestClientConfiguration.xml");
 
-            var friend = GrainClient.GrainFactory.GetGrain<IPrinter>(0);
-            Console.WriteLine("\n\n{0}\n\n", friend.SayHello().Result);
+            var printer = GrainClient.GrainFactory.GetGrain<IPrinter>(0);
+            //Console.WriteLine("\n\n{0}\n\n", printer.PrintAverage().Result);
 
             Console.WriteLine("Orleans Silo is running.\nPress Enter to terminate...");
             Console.ReadLine();
