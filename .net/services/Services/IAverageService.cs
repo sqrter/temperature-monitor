@@ -1,14 +1,14 @@
-﻿using Services.Entities;
-using System;
+﻿using System;
+using Common.Entities;
 
-namespace TemperatureMonitor.Services
+namespace Common.Services
 {
     public interface IAverageService
     {
         TimeSpan AverageActualPeriod { get; }
         double Threshold { get; }
 
-        void AddValue(int deviceId, TemperatureValue value, Action<bool> callback);
+        void AddValue(long deviceId, TemperatureValue value, Action<bool> callback);
         double Average();
     }
 }

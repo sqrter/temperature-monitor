@@ -1,7 +1,7 @@
-﻿using Services.Entities;
-using System;
+﻿using System;
+using Common.Entities;
 
-namespace TemperatureMonitor.Services
+namespace Common.Services
 {
     public abstract class AbstractAverageService : IAverageService
     {
@@ -13,7 +13,7 @@ namespace TemperatureMonitor.Services
             Threshold = threshold;
             AverageActualPeriod = averageActualPeriod;
         }
-        public abstract void AddValue(int deviceId, TemperatureValue value, Action<bool> callback);
+        public abstract void AddValue(long deviceId, TemperatureValue value, Action<bool> callback);
         public abstract double Average();
     }
 }

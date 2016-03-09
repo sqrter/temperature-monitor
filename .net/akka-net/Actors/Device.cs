@@ -1,20 +1,21 @@
 ﻿using Akka.Actor;
 using Akka.Util;
 using System;
+using Common.Messages;
 
 namespace TemperatureMonitor.Actors
 {
     class Device : ReceiveActor, ILogReceive
     {
-        private readonly int deviceId;
+        private readonly long deviceId;
         private readonly IActorRef processor;
 
-        public static Props CreateProps(int deviceId, IActorRef processor)
+        public static Props CreateProps(long deviceId, IActorRef processor)
         {
             return Props.Create(() => new Device(deviceId, processor));
         }
 
-        public Device(int deviceId, IActorRef processor)
+        public Device(long deviceId, IActorRef processor)
         {
             this.deviceId = deviceId;
             this.processor = processor;

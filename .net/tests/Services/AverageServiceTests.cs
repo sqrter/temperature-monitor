@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TemperatureMonitor.Services;
-using FluentAssertions;
-using TemperatureMonitor.Messages;
 using System.Collections.Generic;
 using System.Linq;
-using Services.Entities;
+using Common.Entities;
+using Common.Messages;
+using Common.Services;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Services
 {
     public abstract class AverageServiceTests
     {

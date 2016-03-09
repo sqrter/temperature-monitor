@@ -1,6 +1,6 @@
 ﻿using Akka.Actor;
-using TemperatureMonitor.Messages;
 using System;
+using Common.Messages;
 using static System.Console;
 
 namespace TemperatureMonitor.Actors

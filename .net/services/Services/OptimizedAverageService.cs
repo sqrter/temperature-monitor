@@ -1,8 +1,8 @@
-﻿using Services.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Common.Entities;
 
-namespace TemperatureMonitor.Services
+namespace Common.Services
 {
     public class OptimizedAverageService : AbstractAverageService
     {
@@ -49,17 +49,17 @@ namespace TemperatureMonitor.Services
             public double TemperatureSumm { get; }
         }
 
-        private Dictionary<int, TemperatureData> data = new Dictionary<int, TemperatureData>();
+        private Dictionary<long, TemperatureData> data = new Dictionary<long, TemperatureData>();
 
         private Total counter = new Total(0, 0.0);
 
-        private Queue<Tuple<int, double, DateTime>> actualValues = new Queue<Tuple<int, double, DateTime>>();
+        private Queue<Tuple<long, double, DateTime>> actualValues = new Queue<Tuple<long, double, DateTime>>();
 
         public OptimizedAverageService(double threshold, TimeSpan averageActualPeriod)
             : base(threshold, averageActualPeriod)
         { }
 
-        public override void AddValue(int deviceId, TemperatureValue value, Action<bool> callback = null)
+        public override void AddValue(long deviceId, TemperatureValue value, Action<bool> callback = null)
         {
             if (data.ContainsKey(deviceId))
             {
@@ -101,7 +101,7 @@ namespace TemperatureMonitor.Services
             return Math.Round(counter.TemperatureSumm / (counter.DevicesCount == 0 ? 1 : counter.DevicesCount), 2);
         }
 
-        private void SetTemperature(int deviceId, TemperatureValue value)
+        private void SetTemperature(long deviceId, TemperatureValue value)
         {
             if (data.ContainsKey(deviceId))
             {

@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using Common.Messages;
 using GrainInterfaces;
 using Orleans;
-using TemperatureMonitor.Messages;
 using static System.Console;
 using static Orleans.TaskDone;
 

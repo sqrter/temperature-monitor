@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
+using Common.Messages;
 using Orleans;
-using TemperatureMonitor.Messages;
 
 namespace GrainInterfaces
 {

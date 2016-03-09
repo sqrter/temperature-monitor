@@ -3,7 +3,8 @@ using Orleans;
 
 namespace GrainInterfaces
 {
-    public interface IDevice : IGrainWithGuidKey
+    public interface IDevice : IGrainWithIntegerKey
     {
+        Task Init(IProcessor processor);
     }
 }

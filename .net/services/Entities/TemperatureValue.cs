@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Services.Entities
+namespace Common.Entities
 {
     public class TemperatureValue
     {

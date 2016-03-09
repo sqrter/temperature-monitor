@@ -1,11 +1,7 @@
 ﻿using Akka.Actor;
 using TemperatureMonitor.Actors;
-using TemperatureMonitor.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Common.Services;
 using static System.Console;
 
 namespace TemperatureMonitor

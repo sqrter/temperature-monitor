@@ -1,4 +1,6 @@
-﻿namespace TemperatureMonitor.Messages
+﻿using System;
+
+namespace Common.Messages
 {
     public class CalculateAverage { }
 
@@ -14,21 +16,21 @@
 
     public class ThresholdExceeded
     {
-        public ThresholdExceeded(int deviceId)
+        public ThresholdExceeded(long deviceId)
         {
             DeviceId = deviceId;
         }
 
-        public int DeviceId { get; }
+        public long DeviceId { get; }
     }
 
     public class ValueNormalized
     {
-        public ValueNormalized(int deviceId)
+        public ValueNormalized(long deviceId)
         {
             DeviceId = deviceId;
         }
 
-        public int DeviceId{ get; }
+        public long DeviceId{ get; }
     }
 }
