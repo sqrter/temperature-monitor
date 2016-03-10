@@ -1,7 +1,10 @@
 ﻿using GrainInterfaces;
 using Orleans;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Messages;
+using Common.Services;
 
 namespace OrleansHost
 {
@@ -16,9 +19,19 @@ namespace OrleansHost
             });
 
             GrainClient.Initialize("DevTestClientConfiguration.xml");
+            var grainFactory = GrainClient.GrainFactory;
 
-            var friend = GrainClient.GrainFactory.GetGrain<IPrinter>(0);
-            Console.WriteLine("\n\n{0}\n\n", friend.SayHello().Result);
+            var printer = grainFactory.GetGrain<IPrinter>(0);
+
+            var processor = grainFactory.GetGrain<IProcessor>(0);
+            processor.Init(printer).Wait();
+
+            int deviceCount = 10;
+            for (int i = 0; i < deviceCount; i++)
+            {
+                var device = grainFactory.GetGrain<IDevice>(i);
+                device.Init(processor).Wait();
+            }
 
             Console.WriteLine("Orleans Silo is running.\nPress Enter to terminate...");
             Console.ReadLine();

@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TemperatureMonitor.Services;
+﻿using Common.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests.Services
 {
     [TestClass]
     public class OptimizedAverageServiceTests : AverageServiceTests
@@ -9,7 +9,7 @@ namespace Tests
         [TestInitialize]
         public void TestInit()
         {
-            sut = new OptimizedAverageService(_hreshold, _averageActualPeriod);
+            Sut = new OptimizedAverageService(Hreshold, AverageActualPeriod);
         }
     }
 }

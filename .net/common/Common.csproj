@@ -7,8 +7,8 @@
     <ProjectGuid>{8DA0668F-05D6-454D-B146-C1EA1614776F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Services</RootNamespace>
-    <AssemblyName>Services</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\TemperatureValue.cs" />
+    <Compile Include="Messages\DeviceMessages.cs" />
+    <Compile Include="Messages\ProcessorMessages.cs" />
     <Compile Include="Services\AbstractAverageService.cs" />
     <Compile Include="Services\IAverageService.cs" />
     <Compile Include="Services\OptimizedAverageService.cs" />

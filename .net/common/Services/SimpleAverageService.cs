@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Services.Entities;
+using Common.Entities;
 
-namespace TemperatureMonitor.Services
+namespace Common.Services
 {
     public class SimpleAverageService : AbstractAverageService
     {
-        private Dictionary<int, TemperatureValue> data = new Dictionary<int, TemperatureValue>();
+        private Dictionary<long, TemperatureValue> data = new Dictionary<long, TemperatureValue>();
 
         public SimpleAverageService(double threshold, TimeSpan averageActualPeriod)
             : base(threshold, averageActualPeriod)
         { }
 
-        public override void AddValue(int deviceId, TemperatureValue value, Action<bool> callback = null)
+        public override void AddValue(long deviceId, TemperatureValue value, Action<bool> callback = null)
         {
             if (data.ContainsKey(deviceId))
             {
@@ -32,13 +32,14 @@ namespace TemperatureMonitor.Services
             SetTemperature(deviceId, value);
         }
 
-        public override double Average()
+        public override double? Average(DateTime currenTime)
         {
-            return data.Where(kvp => kvp.Value.Timestamp > DateTime.UtcNow - AverageActualPeriod)
-                                .Select(x => x.Value.Temperature).DefaultIfEmpty(0).Average();
+            var filtered = data.Where(kvp => kvp.Value.Timestamp > currenTime - AverageActualPeriod)
+                .Select(x => x.Value.Temperature).ToList();
+            return filtered.Any() ? filtered.Average() : (double?)null;
         }
 
-        private void SetTemperature(int deviceId, TemperatureValue value) => data[deviceId] = value;
+        private void SetTemperature(long deviceId, TemperatureValue value) => data[deviceId] = value;
 
     }
 }

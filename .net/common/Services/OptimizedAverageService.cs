@@ -1,22 +1,20 @@
-﻿using Services.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Common.Entities;
 
-namespace TemperatureMonitor.Services
+namespace Common.Services
 {
     public class OptimizedAverageService : AbstractAverageService
     {
         private class TemperatureData
         {
-            public TemperatureData(double value, DateTime timestamp, int countInQueue)
+            public TemperatureData(double value, int countInQueue)
             {
                 Temperature = value;
-                Timestamp = timestamp;
                 CountInQueue = countInQueue;
             }
 
             public double Temperature { get; private set; }
-            public DateTime Timestamp { get; }
             public int CountInQueue { get; private set; }
 
             public TemperatureData UpdateTemperature(double temperature)
@@ -49,17 +47,17 @@ namespace TemperatureMonitor.Services
             public double TemperatureSumm { get; }
         }
 
-        private Dictionary<int, TemperatureData> data = new Dictionary<int, TemperatureData>();
+        private readonly Dictionary<long, TemperatureData> data = new Dictionary<long, TemperatureData>();
 
         private Total counter = new Total(0, 0.0);
 
-        private Queue<Tuple<int, double, DateTime>> actualValues = new Queue<Tuple<int, double, DateTime>>();
+        private readonly Queue<Tuple<long, double, DateTime>> actualValues = new Queue<Tuple<long, double, DateTime>>();
 
         public OptimizedAverageService(double threshold, TimeSpan averageActualPeriod)
             : base(threshold, averageActualPeriod)
         { }
 
-        public override void AddValue(int deviceId, TemperatureValue value, Action<bool> callback = null)
+        public override void AddValue(long deviceId, TemperatureValue value, Action<bool> callback = null)
         {
             if (data.ContainsKey(deviceId))
             {
@@ -77,16 +75,17 @@ namespace TemperatureMonitor.Services
             SetTemperature(deviceId, value);
         }
 
-        public override double Average()
+        public override double? Average(DateTime currenTime)
         {
-            while (counter.DevicesCount != 0)
+            while (counter.DevicesCount > 0)
             {
                 var firstOut = actualValues.Peek();
-                if (firstOut.Item3 < DateTime.UtcNow - AverageActualPeriod)
+                if (firstOut.Item3 < currenTime - AverageActualPeriod)
                 {
-                    var temperatureData = data[firstOut.Item1].DecrementCount();
-                    if (temperatureData.CountInQueue == 0)
+                    var temperatureData = data[firstOut.Item1];
+                    if (temperatureData.CountInQueue == 1)
                     {
+                        temperatureData.DecrementCount();
                         counter = new Total(counter.DevicesCount - 1,
                             counter.TemperatureSumm - temperatureData.Temperature);
                         data[firstOut.Item1].UpdateTemperature(0);
@@ -98,12 +97,12 @@ namespace TemperatureMonitor.Services
                     break;
                 }
             }
-            return Math.Round(counter.TemperatureSumm / (counter.DevicesCount == 0 ? 1 : counter.DevicesCount), 2);
+            return counter.DevicesCount == 0 ? (double?)null : Math.Round(counter.TemperatureSumm / counter.DevicesCount, 5);
         }
 
-        private void SetTemperature(int deviceId, TemperatureValue value)
+        private void SetTemperature(long deviceId, TemperatureValue value)
         {
-            if (data.ContainsKey(deviceId))
+            if (data.ContainsKey(deviceId) && data[deviceId].CountInQueue > 0)
             {
                 counter = new Total(counter.DevicesCount,
                     counter.TemperatureSumm - data[deviceId].Temperature + value.Temperature);
@@ -112,7 +111,7 @@ namespace TemperatureMonitor.Services
             }
             else
             {
-                data[deviceId] = new TemperatureData(value.Temperature, value.Timestamp, 1);
+                data[deviceId] = new TemperatureData(value.Temperature, 1);
                 counter = new Total(counter.DevicesCount + 1, counter.TemperatureSumm + value.Temperature);
             }
             actualValues.Enqueue(Tuple.Create(deviceId, value.Temperature, value.Timestamp));

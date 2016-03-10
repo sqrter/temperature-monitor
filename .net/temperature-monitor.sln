@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkkaNet", "akka-net\AkkaNet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "tests\Tests.csproj", "{1D32756A-F043-49B4-A630-6232AB6F21F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Services\Common.csproj", "{8DA0668F-05D6-454D-B146-C1EA1614776F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "common\Common.csproj", "{8DA0668F-05D6-454D-B146-C1EA1614776F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Orleans", "Orleans", "{FFBAC0DA-068A-4ADA-BE68-80EB78C78875}"
 EndProject

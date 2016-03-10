@@ -1,6 +1,6 @@
 ﻿using Akka.Actor;
-using TemperatureMonitor.Messages;
 using System;
+using Common.Messages;
 using static System.Console;
 
 namespace TemperatureMonitor.Actors
@@ -14,7 +14,7 @@ namespace TemperatureMonitor.Actors
 
         public Printer()
         {
-            Receive<AverageTemperature>(avg => avg.Value == 0, avg => PrintAverage("Unknown or outdated"));
+            Receive<AverageTemperature>(avg => avg.Value == null, avg => PrintAverage("Unknown or outdated"));
             Receive<AverageTemperature>(avg => PrintAverage(avg.Value));
             Receive<ThresholdExceeded>(msg => Warn($"Threshold exceeded. Device {msg.DeviceId}."));
             Receive<ValueNormalized>(msg => {

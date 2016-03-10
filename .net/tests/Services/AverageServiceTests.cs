@@ -1,50 +1,51 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TemperatureMonitor.Services;
-using FluentAssertions;
-using TemperatureMonitor.Messages;
 using System.Collections.Generic;
 using System.Linq;
-using Services.Entities;
+using Common.Entities;
+using Common.Messages;
+using Common.Services;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.DateTime;
 
-namespace Tests
+namespace Tests.Services
 {
     public abstract class AverageServiceTests
     {
-        protected double _hreshold = 5.0;
-        protected TimeSpan _averageActualPeriod = TimeSpan.FromSeconds(3);
+        protected double Hreshold = 5.0;
+        protected TimeSpan AverageActualPeriod = TimeSpan.FromSeconds(3);
 
-        protected IAverageService sut;
+        protected IAverageService Sut;
 
         [TestMethod]
         public void Constructor_InitRequiredProperties()
         {
             //assert
-            sut.AverageActualPeriod.Should().Be(_averageActualPeriod);
-            sut.Threshold.Should().Be(_hreshold);
+            Sut.AverageActualPeriod.Should().Be(AverageActualPeriod);
+            Sut.Threshold.Should().Be(Hreshold);
         }
 
         [TestMethod]
         public void AddValue_AddValueIntoAverage()
         {
             //arrange
-            sut.Average().Should().Be(0);
+            Sut.Average(UtcNow).Should().NotHaveValue();
             //act
-            sut.AddValue(1, new TemperatureValue(2.0, DateTime.UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(2.0, UtcNow), null);
             //assert
-            sut.Average().Should().Be(2.0);
+            Sut.Average(UtcNow).Should().Be(2.0);
         }
 
         [TestMethod]
         public void AddValue_UpdateExistedValue()
         {
             //arrange
-            sut.Average().Should().Be(0);
+            Sut.Average(UtcNow).Should().NotHaveValue();
             //act
-            sut.AddValue(1, new TemperatureValue(2.0, DateTime.UtcNow), null);
-            sut.AddValue(1, new TemperatureValue(4.0, DateTime.UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(2.0, UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(4.0, UtcNow), null);
             //assert
-            sut.Average().Should().Be(4.0);
+            Sut.Average(UtcNow).Should().Be(4.0);
         }
 
         [TestMethod]
@@ -53,7 +54,7 @@ namespace Tests
             //arrange
             object message = null;
             //act
-            sut.AddValue(1, new TemperatureValue(2.0, DateTime.UtcNow), (msg) => message = msg);
+            Sut.AddValue(1, new TemperatureValue(2.0, UtcNow), (msg) => message = msg);
             //assert
             message.Should().BeNull();
         }
@@ -64,8 +65,8 @@ namespace Tests
             //arrange
             object message = null;
             //act
-            sut.AddValue(1, new TemperatureValue(_hreshold - 1, DateTime.UtcNow), null);
-            sut.AddValue(1, new TemperatureValue(_hreshold, DateTime.UtcNow), (msg) => message = msg);
+            Sut.AddValue(1, new TemperatureValue(Hreshold - 1, UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(Hreshold, UtcNow), (msg) => message = msg);
             //assert
             message.Should().Equals(new ThresholdExceeded(1));
         }
@@ -76,8 +77,8 @@ namespace Tests
             //arrange
             object message = null;
             //act
-            sut.AddValue(1, new TemperatureValue(_hreshold, DateTime.UtcNow), null);
-            sut.AddValue(1, new TemperatureValue(_hreshold + 1, DateTime.UtcNow), (msg) => message = msg);
+            Sut.AddValue(1, new TemperatureValue(Hreshold, UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(Hreshold + 1, UtcNow), (msg) => message = msg);
             //assert
             message.Should().BeNull();
         }
@@ -88,8 +89,8 @@ namespace Tests
             //arrange
             object message = null;
             //act
-            sut.AddValue(1, new TemperatureValue(_hreshold + 1, DateTime.UtcNow), null);
-            sut.AddValue(1, new TemperatureValue(_hreshold - 1, DateTime.UtcNow), (msg) => message = msg);
+            Sut.AddValue(1, new TemperatureValue(Hreshold + 1, UtcNow), null);
+            Sut.AddValue(1, new TemperatureValue(Hreshold - 1, UtcNow), (msg) => message = msg);
             //assert
             message.Should().Equals(new ValueNormalized(1));
         }
@@ -98,9 +99,9 @@ namespace Tests
         public void Average_ReturnZeroIfNothingToCount()
         {
             //act
-            var result = sut.Average();
+            var result = Sut.Average(UtcNow);
             //assert
-            result.Should().Be(0);
+            result.Should().NotHaveValue();
         }
 
         [TestMethod]
@@ -108,12 +109,12 @@ namespace Tests
         {
             //arrange
             var list = new List<double> { 1.0, 2.0, 3.0, 4.0, 5.0 };
-            for (int i = 0; i < list.Count; i++)
+            foreach (double t in list)
             {
-                sut.AddValue((int)list[i], new TemperatureValue(list[i], DateTime.UtcNow), null);
+                Sut.AddValue((int)t, new TemperatureValue(t, UtcNow), null);
             }
             //act
-            var result = sut.Average();
+            var result = Sut.Average(UtcNow);
             //assert
             result.Should().Be(list.Average());
         }
@@ -123,14 +124,14 @@ namespace Tests
         {
             //arrange
             var list = new List<double> { 1.0, 2.0, 3.0, 4.0, 5.0 };
-            for (int i = 0; i < list.Count; i++)
+            foreach (double t in list)
             {
-                var longerPeriod = _averageActualPeriod.Add(_averageActualPeriod);
-                sut.AddValue((int)list[i], new TemperatureValue(list[i],
-                    list[i] < 3.0 ? DateTime.UtcNow - longerPeriod : DateTime.UtcNow), null);
+                var longerPeriod = AverageActualPeriod.Add(AverageActualPeriod);
+                Sut.AddValue((int)t, new TemperatureValue(t,
+                    t < 3.0 ? UtcNow - longerPeriod : UtcNow), null);
             }
             //act
-            var result = sut.Average();
+            var result = Sut.Average(UtcNow);
             //assert
             result.Should().Be(list.Where(x => x >= 3).Average());
         }

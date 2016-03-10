@@ -1,11 +1,7 @@
 ﻿using Akka.Actor;
 using TemperatureMonitor.Actors;
-using TemperatureMonitor.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Common.Services;
 using static System.Console;
 
 namespace TemperatureMonitor
@@ -21,7 +17,7 @@ namespace TemperatureMonitor
             var processor = system.ActorOf(Processor.CreateProps(printer,
                 new OptimizedAverageService(5.0, TimeSpan.FromSeconds(3))));
 
-            int deviceCount = 10;
+            int deviceCount = 5;
             for (int i = 0; i < deviceCount; i++)
             {
                 system.ActorOf(Device.CreateProps(i, processor));

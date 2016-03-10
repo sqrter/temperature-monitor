@@ -1,10 +1,10 @@
 ﻿using Akka.Actor;
 using Akka.Event;
-using TemperatureMonitor.Messages;
-using TemperatureMonitor.Services;
 using System;
+using Common.Entities;
+using Common.Messages;
+using Common.Services;
 using static System.TimeSpan;
-using Services.Entities;
 
 namespace TemperatureMonitor.Actors
 {
@@ -40,7 +40,7 @@ namespace TemperatureMonitor.Actors
                     })
             );
 
-            Receive<CalculateAverage>(msg => listener.Tell(new AverageTemperature(averageService.Average())));
+            Receive<CalculateAverage>(msg => listener.Tell(new AverageTemperature(averageService.Average(DateTime.UtcNow))));
         }
 
     }

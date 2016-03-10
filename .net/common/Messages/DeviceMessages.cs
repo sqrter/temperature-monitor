@@ -1,4 +1,6 @@
-﻿namespace TemperatureMonitor
+﻿using System;
+
+namespace Common.Messages
 {
     public class Iterate
     {
@@ -12,13 +14,13 @@
 
     public class DeviceTemperature
     {
-        public DeviceTemperature(int deviceId, double value)
+        public DeviceTemperature(long deviceId, double value)
         {
             DeviceId = deviceId;
             Value = value;
         }
 
-        public int DeviceId { get; }
+        public long DeviceId { get; }
 
         public double Value { get; }
     }
