@@ -9,6 +9,6 @@ namespace Common.Services
         double Threshold { get; }
 
         void AddValue(long deviceId, TemperatureValue value, Action<bool> callback);
-        double Average();
+        double? Average(DateTime currenTime);
     }
 }

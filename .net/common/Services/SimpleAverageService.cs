@@ -32,10 +32,11 @@ namespace Common.Services
             SetTemperature(deviceId, value);
         }
 
-        public override double Average()
+        public override double? Average(DateTime currenTime)
         {
-            return data.Where(kvp => kvp.Value.Timestamp > DateTime.UtcNow - AverageActualPeriod)
-                                .Select(x => x.Value.Temperature).DefaultIfEmpty(0).Average();
+            var filtered = data.Where(kvp => kvp.Value.Timestamp > currenTime - AverageActualPeriod)
+                .Select(x => x.Value.Temperature).ToList();
+            return filtered.Any() ? filtered.Average() : (double?)null;
         }
 
         private void SetTemperature(long deviceId, TemperatureValue value) => data[deviceId] = value;

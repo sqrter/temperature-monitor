@@ -376,13 +376,13 @@ namespace GrainInterfaces
     internal class OrleansCodeGenCommon_Messages_AverageTemperatureSerializer
     {
         private static readonly global::System.Reflection.FieldInfo field0 = typeof (global::Common.Messages.AverageTemperature).@GetField("<Value>k__BackingField", (System.@Reflection.@BindingFlags.@Public | System.@Reflection.@BindingFlags.@NonPublic | System.@Reflection.@BindingFlags.@Instance));
-        private static readonly global::System.Action<global::Common.Messages.AverageTemperature, global::System.Double> setField0 = (global::System.Action<global::Common.Messages.AverageTemperature, global::System.Double>)global::Orleans.Serialization.SerializationManager.@GetReferenceSetter(field0);
+        private static readonly global::System.Action<global::Common.Messages.AverageTemperature, global::System.Nullable<global::System.Double>> setField0 = (global::System.Action<global::Common.Messages.AverageTemperature, global::System.Nullable<global::System.Double>>)global::Orleans.Serialization.SerializationManager.@GetReferenceSetter(field0);
         [global::Orleans.CodeGeneration.CopierMethodAttribute]
         public static global::System.Object DeepCopier(global::System.Object original)
         {
             global::Common.Messages.AverageTemperature input = ((global::Common.Messages.AverageTemperature)original);
             global::Common.Messages.AverageTemperature result = (global::Common.Messages.AverageTemperature)global::System.Runtime.Serialization.FormatterServices.@GetUninitializedObject(typeof (global::Common.Messages.AverageTemperature));
-            setField0(result, input.@Value);
+            setField0(result, (global::System.Nullable<global::System.Double>)global::Orleans.Serialization.SerializationManager.@DeepCopyInner(input.@Value));
             global::Orleans.@Serialization.@SerializationContext.@Current.@RecordObject(original, result);
             return result;
         }
@@ -391,7 +391,7 @@ namespace GrainInterfaces
         public static void Serializer(global::System.Object untypedInput, global::Orleans.Serialization.BinaryTokenStreamWriter stream, global::System.Type expected)
         {
             global::Common.Messages.AverageTemperature input = (global::Common.Messages.AverageTemperature)untypedInput;
-            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Value, stream, typeof (global::System.Double));
+            global::Orleans.Serialization.SerializationManager.@SerializeInner(input.@Value, stream, typeof (global::System.Nullable<global::System.Double>));
         }
 
         [global::Orleans.CodeGeneration.DeserializerMethodAttribute]
@@ -399,7 +399,7 @@ namespace GrainInterfaces
         {
             global::Common.Messages.AverageTemperature result = (global::Common.Messages.AverageTemperature)global::System.Runtime.Serialization.FormatterServices.@GetUninitializedObject(typeof (global::Common.Messages.AverageTemperature));
             global::Orleans.@Serialization.@DeserializationContext.@Current.@RecordObject(result);
-            setField0(result, (global::System.Double)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Double), stream));
+            setField0(result, (global::System.Nullable<global::System.Double>)global::Orleans.Serialization.SerializationManager.@DeserializeInner(typeof (global::System.Nullable<global::System.Double>), stream));
             return (global::Common.Messages.AverageTemperature)result;
         }
 

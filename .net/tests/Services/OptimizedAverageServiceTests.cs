@@ -9,7 +9,7 @@ namespace Tests.Services
         [TestInitialize]
         public void TestInit()
         {
-            sut = new OptimizedAverageService(_hreshold, _averageActualPeriod);
+            Sut = new OptimizedAverageService(Hreshold, AverageActualPeriod);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Grains
 
         Task CalculateAverage(object arg)
         {
-            printer.PrintAverage(new AverageTemperature(averageService.Average()));
+            printer.PrintAverage(new AverageTemperature(averageService.Average(DateTime.UtcNow)));
             return Done;
         }
     }

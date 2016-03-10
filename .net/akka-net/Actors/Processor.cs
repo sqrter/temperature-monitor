@@ -40,7 +40,7 @@ namespace TemperatureMonitor.Actors
                     })
             );
 
-            Receive<CalculateAverage>(msg => listener.Tell(new AverageTemperature(averageService.Average())));
+            Receive<CalculateAverage>(msg => listener.Tell(new AverageTemperature(averageService.Average(DateTime.UtcNow))));
         }
 
     }

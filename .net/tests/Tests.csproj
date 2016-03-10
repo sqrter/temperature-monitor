@@ -73,7 +73,7 @@
       <Project>{0bcbd70f-9e3e-451a-a104-25490f393f5c}</Project>
       <Name>AkkaNet</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Common.csproj">
+    <ProjectReference Include="..\common\Common.csproj">
       <Project>{8da0668f-05d6-454d-b146-c1ea1614776f}</Project>
       <Name>Common</Name>
     </ProjectReference>

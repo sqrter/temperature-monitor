@@ -118,7 +118,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\Common.csproj">
+    <ProjectReference Include="..\..\common\Common.csproj">
       <Project>{8DA0668F-05D6-454D-B146-C1EA1614776F}</Project>
       <Name>Common</Name>
     </ProjectReference>

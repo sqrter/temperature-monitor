@@ -6,12 +6,12 @@ namespace Common.Messages
 
     public class AverageTemperature
     {
-        public AverageTemperature(double value)
+        public AverageTemperature(double? value)
         {
             Value = value;
         }
 
-        public double Value { get; }
+        public double? Value { get; }
     }
 
     public class ThresholdExceeded

@@ -12,13 +12,13 @@ namespace Grains
     {
         public Task PrintAverage(AverageTemperature data)
         {
-            if (data.Value == 0)
+            if (data.Value.HasValue)
             {
-                PrintAverage("Unknown or outdated");
+                PrintAverage(data.Value);
             }
             else
             {
-                PrintAverage(data.Value);
+                PrintAverage("Unknown or outdated");
             }
             return Done;
         }
