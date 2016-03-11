@@ -1,33 +1,8 @@
-﻿/*
-Project Orleans Cloud Service SDK ver. 1.0
- 
-Copyright (c) Microsoft Corporation
- 
-All rights reserved.
- 
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
-associated documentation files (the ""Software""), to deal in the Software without restriction,
-including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
-OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-
-using System;
+﻿using System;
 using System.Net;
-using System.Threading.Tasks;
-
 using Orleans.Runtime.Host;
 
-namespace OrleansHost
+namespace Silo
 {
     internal class OrleansHostWrapper : IDisposable
     {
@@ -57,17 +32,17 @@ namespace OrleansHost
 
                 if (ok)
                 {
-                    Console.WriteLine(string.Format("Successfully started Orleans silo '{0}' as a {1} node.", siloHost.Name, siloHost.Type));
+                    Console.WriteLine($"Successfully started Orleans silo '{siloHost.Name}' as a {siloHost.Type} node.");
                 }
                 else
                 {
-                    throw new SystemException(string.Format("Failed to start Orleans silo '{0}' as a {1} node.", siloHost.Name, siloHost.Type));
+                    throw new SystemException($"Failed to start Orleans silo '{siloHost.Name}' as a {siloHost.Type} node.");
                 }
             }
             catch (Exception exc)
             {
                 siloHost.ReportStartupError(exc);
-                var msg = string.Format("{0}:\n{1}\n{2}", exc.GetType().FullName, exc.Message, exc.StackTrace);
+                var msg = $"{exc.GetType().FullName}:\n{exc.Message}\n{exc.StackTrace}";
                 Console.WriteLine(msg);
             }
 
@@ -82,12 +57,12 @@ namespace OrleansHost
             {
                 siloHost.StopOrleansSilo();
 
-                Console.WriteLine(string.Format("Orleans silo '{0}' shutdown.", siloHost.Name));
+                Console.WriteLine($"Orleans silo '{siloHost.Name}' shutdown.");
             }
             catch (Exception exc)
             {
                 siloHost.ReportStartupError(exc);
-                var msg = string.Format("{0}:\n{1}\n{2}", exc.GetType().FullName, exc.Message, exc.StackTrace);
+                var msg = $"{exc.GetType().FullName}:\n{exc.Message}\n{exc.StackTrace}";
                 Console.WriteLine(msg);
             }
 
@@ -103,7 +78,7 @@ namespace OrleansHost
         {
             string deploymentId = null;
 
-            string configFileName = "DevTestServerConfiguration.xml";
+            string configFileName = "OrleansConfiguration.xml";
             string siloName = Dns.GetHostName(); // Default to machine name
 
             int argPos = 1;

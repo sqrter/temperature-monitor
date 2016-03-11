@@ -6,14 +6,14 @@
 #pragma warning disable 693
 #pragma warning disable 1591
 #pragma warning disable 1998
-[assembly: global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0")]
+[assembly: global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0")]
 [assembly: global::Orleans.CodeGeneration.OrleansCodeGenerationTargetAttribute("GrainInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")]
 namespace GrainInterfaces
 {
     using global::Orleans.Async;
     using global::Orleans;
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IProcessor))]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IProcessor))]
     internal class OrleansCodeGenProcessorReference : global::Orleans.Runtime.GrainReference, global::GrainInterfaces.IProcessor
     {
         protected @OrleansCodeGenProcessorReference(global::Orleans.Runtime.GrainReference @other): base (@other)
@@ -76,7 +76,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IProcessor", -1962413964, typeof (global::GrainInterfaces.IProcessor)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IProcessor", -1962413964, typeof (global::GrainInterfaces.IProcessor)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     internal class OrleansCodeGenProcessorMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
     {
         public global::System.Threading.Tasks.Task<global::System.Object> @Invoke(global::Orleans.Runtime.IAddressable @grain, global::System.Int32 @interfaceId, global::System.Int32 @methodId, global::System.Object[] @arguments)
@@ -117,7 +117,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.DeviceTemperature)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.DeviceTemperature)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
     internal class OrleansCodeGenCommon_Messages_DeviceTemperatureSerializer
     {
         private static readonly global::System.Reflection.FieldInfo field0 = typeof (global::Common.Messages.DeviceTemperature).@GetField("<DeviceId>k__BackingField", (System.@Reflection.@BindingFlags.@Public | System.@Reflection.@BindingFlags.@NonPublic | System.@Reflection.@BindingFlags.@Instance));
@@ -164,7 +164,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IDevice))]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IDevice))]
     internal class OrleansCodeGenDeviceReference : global::Orleans.Runtime.GrainReference, global::GrainInterfaces.IDevice
     {
         protected @OrleansCodeGenDeviceReference(global::Orleans.Runtime.GrainReference @other): base (@other)
@@ -220,7 +220,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IDevice", 1233120812, typeof (global::GrainInterfaces.IDevice)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IDevice", 1233120812, typeof (global::GrainInterfaces.IDevice)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     internal class OrleansCodeGenDeviceMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
     {
         public global::System.Threading.Tasks.Task<global::System.Object> @Invoke(global::Orleans.Runtime.IAddressable @grain, global::System.Int32 @interfaceId, global::System.Int32 @methodId, global::System.Object[] @arguments)
@@ -259,7 +259,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IPrinter))]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.SerializableAttribute, global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.GrainReferenceAttribute(typeof (global::GrainInterfaces.IPrinter))]
     internal class OrleansCodeGenPrinterReference : global::Orleans.Runtime.GrainReference, global::GrainInterfaces.IPrinter
     {
         protected @OrleansCodeGenPrinterReference(global::Orleans.Runtime.GrainReference @other): base (@other)
@@ -329,7 +329,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IPrinter", -1618503141, typeof (global::GrainInterfaces.IPrinter)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::Orleans.CodeGeneration.MethodInvokerAttribute("global::GrainInterfaces.IPrinter", -1618503141, typeof (global::GrainInterfaces.IPrinter)), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute]
     internal class OrleansCodeGenPrinterMethodInvoker : global::Orleans.CodeGeneration.IGrainMethodInvoker
     {
         public global::System.Threading.Tasks.Task<global::System.Object> @Invoke(global::Orleans.Runtime.IAddressable @grain, global::System.Int32 @interfaceId, global::System.Int32 @methodId, global::System.Object[] @arguments)
@@ -372,7 +372,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.AverageTemperature)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.AverageTemperature)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
     internal class OrleansCodeGenCommon_Messages_AverageTemperatureSerializer
     {
         private static readonly global::System.Reflection.FieldInfo field0 = typeof (global::Common.Messages.AverageTemperature).@GetField("<Value>k__BackingField", (System.@Reflection.@BindingFlags.@Public | System.@Reflection.@BindingFlags.@NonPublic | System.@Reflection.@BindingFlags.@Instance));
@@ -414,7 +414,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.ThresholdExceeded)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.ThresholdExceeded)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
     internal class OrleansCodeGenCommon_Messages_ThresholdExceededSerializer
     {
         private static readonly global::System.Reflection.FieldInfo field0 = typeof (global::Common.Messages.ThresholdExceeded).@GetField("<DeviceId>k__BackingField", (System.@Reflection.@BindingFlags.@Public | System.@Reflection.@BindingFlags.@NonPublic | System.@Reflection.@BindingFlags.@Instance));
@@ -456,7 +456,7 @@ namespace GrainInterfaces
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.2.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.ValueNormalized)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Orleans-CodeGenerator", "1.1.3.0"), global::System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute, global::Orleans.CodeGeneration.SerializerAttribute(typeof (global::Common.Messages.ValueNormalized)), global::Orleans.CodeGeneration.RegisterSerializerAttribute]
     internal class OrleansCodeGenCommon_Messages_ValueNormalizedSerializer
     {
         private static readonly global::System.Reflection.FieldInfo field0 = typeof (global::Common.Messages.ValueNormalized).@GetField("<DeviceId>k__BackingField", (System.@Reflection.@BindingFlags.@Public | System.@Reflection.@BindingFlags.@NonPublic | System.@Reflection.@BindingFlags.@Instance));
