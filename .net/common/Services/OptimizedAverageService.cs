@@ -88,7 +88,6 @@ namespace Common.Services
                         temperatureData.DecrementCount();
                         counter = new Total(counter.DevicesCount - 1,
                             counter.TemperatureSumm - temperatureData.Temperature);
-                        data[firstOut.Item1].UpdateTemperature(0);
                     }
                     actualValues.Dequeue();
                 }
