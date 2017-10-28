@@ -37,6 +37,7 @@ node_modules/
 ClientBin/
 
 *.user
+*.codegen.cs
 
 **/[Bb]in/*
 **/[Oo]bj/*
